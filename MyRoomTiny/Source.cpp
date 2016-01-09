@@ -180,10 +180,13 @@ static bool MainLoop(bool retryCreate)
     {
         XMVECTOR forward = XMVector3Rotate(XMVectorSet(0, 0, -0.05f, 0), mainCam->Rot);
         XMVECTOR right = XMVector3Rotate(XMVectorSet(0.05f, 0, 0, 0), mainCam->Rot);
+        XMVECTOR up = XMVector3Rotate(XMVectorSet(0, -0.05f, 0, 0), mainCam->Rot);
         if (DIRECTX.Key['W'] || DIRECTX.Key[VK_UP])	  mainCam->Pos = XMVectorAdd(mainCam->Pos, forward);
         if (DIRECTX.Key['S'] || DIRECTX.Key[VK_DOWN]) mainCam->Pos = XMVectorSubtract(mainCam->Pos, forward);
         if (DIRECTX.Key['D'])                         mainCam->Pos = XMVectorAdd(mainCam->Pos, right);
         if (DIRECTX.Key['A'])                         mainCam->Pos = XMVectorSubtract(mainCam->Pos, right);
+        if (DIRECTX.Key['Q'])                         mainCam->Pos = XMVectorAdd(mainCam->Pos, up);
+        if (DIRECTX.Key['E'])                         mainCam->Pos = XMVectorSubtract(mainCam->Pos, up);
         static float Yaw = 0;
         if (DIRECTX.Key[VK_LEFT])  mainCam->Rot = XMQuaternionRotationRollPitchYaw(0, Yaw += 0.02f, 0);
         if (DIRECTX.Key[VK_RIGHT]) mainCam->Rot = XMQuaternionRotationRollPitchYaw(0, Yaw -= 0.02f, 0);
